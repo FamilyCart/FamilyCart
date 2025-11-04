@@ -79,6 +79,27 @@ make up
   * Frontend → [http://localhost:4200](http://localhost:4200)
   * Backend API → [http://localhost:8000](http://localhost:8000)
 
+
+###  Note: Initialize Role Table 
+
+After running make up, do the following:
+```bash
+make migrate        # Apply database migrations
+make shell          # Open Django shell
+
+
+Then create two objects in the Role table:
+
+from family.models import Role
+Role.objects.create(name='member')
+Role.objects.create(name='owner')
+Role.objects.all()
+-> <QuerySet [<Role: member>, <Role: owner>]>
+
+
+This ensures the Role table has the required default entries for the application.
+```
+
 ### Stop all services
 
 ```bash
