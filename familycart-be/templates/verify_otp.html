@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Verification</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .email-container {
+            max-width: 480px;
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .logo {
+            text-align: center;
+            padding: 10px 0;
+        }
+
+        .header-text {
+            font-size: 22px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .sub-text {
+            font-size: 16px;
+            color: #555;
+            margin-bottom: 20px;
+        }
+
+        .otp-code {
+            font-size: 28px;
+            font-weight: bold;
+            color: #1e88e5;
+            background: #f0f8ff;
+            display: inline-block;
+            padding: 10px 20px;
+            border-radius: 8px;
+            margin: 10px 0;
+        }
+
+        .verify-button {
+            display: inline-block;
+            background: #1e88e5;
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: 600;
+            padding: 12px 24px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+
+        .verify-button:hover {
+            background: #1565c0;
+        }
+
+        .footer {
+            font-size: 12px;
+            color: #888;
+            margin-top: 20px;
+        }
+
+        .footer a {
+            color: #1e88e5;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="email-container">
+        <div class="logo">
+            <img src="https://cdn.dribbble.com/userupload/10010773/file/original-800b2be1363ca6fde3aaf299edc6361c.png?resize=1001x1000&vertical=center" alt="FamilyCart Logo" width="100">
+        </div>
+        <p class="header-text">Verify Your Email</p>
+        <p class="sub-text">Hello {{first_name}},</p>
+        <p>Thank you for registering with FamilyCart. Use the OTP below to verify your email and activate your account.</p>
+        <p class="otp-code">{{verification_otp}}</p>
+        <p>This OTP is valid for 24 hours.</p>
+        <p class="footer">If you did not able to sign up for FamilyCart, please <a href="https://www.FamilyCart.com/contact-us/">contact us</a>.</p>
+    </div>
+</body>
+</html>

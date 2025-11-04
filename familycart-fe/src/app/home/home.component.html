@@ -1,0 +1,91 @@
+<div class="home-container">
+  <header class="header">
+    <div class="container">
+      <div class="header-content">
+        <div class="logo-container">
+          <img [src]="logoImageUrl" 
+               alt="FamilyCart Logo" 
+               class="logo-img">
+          <h1 class="logo-text">FamilyCart</h1>
+        </div>
+        <nav class="nav" [class.active]="menuOpen">
+          <a *ngIf="!isAuthenticated" href="#" class="nav-link">Home</a>
+          <a *ngIf="!isAuthenticated" href="#" class="nav-link">Products</a>
+          <a *ngIf="!isAuthenticated" href="#" class="nav-link">About</a>
+          <a *ngIf="!isAuthenticated" href="#" class="nav-link">Contact</a>
+          
+          <!-- Authenticated Navigation -->
+          <a *ngIf="isAuthenticated" [routerLink]="['/profile']" class="nav-link">Profile</a>
+          <div *ngIf="isAuthenticated" class="dropdown">
+            <a href="#" class="nav-link dropdown-toggle" [class.active]="groceryListDropdownOpen" (click)="toggleGroceryListDropdown(); $event.preventDefault()">
+              GroceryList
+              <span class="dropdown-arrow">▼</span>
+            </a>
+                <ul class="dropdown-menu" [class.show]="groceryListDropdownOpen">
+                  <li><a [routerLink]="['/create-grocery-list']" class="dropdown-item">Create New</a></li>
+                  <li><a [routerLink]="['/grocery-lists']" class="dropdown-item">MyList</a></li>
+                </ul>
+          </div>
+          <a *ngIf="isAuthenticated" [routerLink]="['/my-family']" class="nav-link">MyFamily</a>
+          <a *ngIf="isAuthenticated" (click)="logout()" class="nav-link logout-link" href="javascript:void(0)">Logout</a>
+        </nav>
+        <button class="menu-toggle" (click)="toggleMenu()" aria-label="Toggle menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="main-content">
+    <div class="container">
+      <!-- Show login/signup if not authenticated -->
+      <div *ngIf="!isAuthenticated" class="auth-section">
+        <section class="hero">
+          <h2 class="hero-title">Welcome to FamilyCart</h2>
+          <p class="hero-subtitle">Your one-stop shop for all family needs</p>
+          <div class="auth-buttons">
+            <a [routerLink]="['/login']" class="btn btn-primary">Login</a>
+            <a [routerLink]="['/signup']" class="btn btn-secondary">Sign Up</a>
+          </div>
+        </section>
+      </div>
+
+      <!-- Show main content if authenticated -->
+      <div *ngIf="isAuthenticated">
+        <section class="hero">
+          <h2 class="hero-title">Welcome to FamilyCart</h2>
+          <p class="hero-subtitle">Your one-stop shop for all family needs</p>
+          <button class="btn btn-primary">Get Started</button>
+        </section>
+
+        <section class="features">
+          <div class="feature-grid">
+            <div class="feature-card">
+              <div class="feature-icon">🛒</div>
+              <h3>Easy Shopping</h3>
+              <p>Browse and shop with ease on any device</p>
+            </div>
+            <div class="feature-card">
+              <div class="feature-icon">📱</div>
+              <h3>Mobile Friendly</h3>
+              <p>Fully responsive design for all screen sizes</p>
+            </div>
+            <div class="feature-card">
+              <div class="feature-icon">⚡</div>
+              <h3>Fast & Reliable</h3>
+              <p>Built with modern technologies for performance</p>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; 2025 FamilyCart. All rights reserved.</p>
+    </div>
+  </footer>
+</div>

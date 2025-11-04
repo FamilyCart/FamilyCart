@@ -1,0 +1,58 @@
+version: "3.9"
+
+services:
+  # ===============================
+  # 🐘 PostgreSQL Database
+  # ===============================
+  db:
+    image: postgres:15
+    container_name: familycart-db
+    environment:
+      POSTGRES_DB: familycart
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  # ===============================
+  # 🐍 Django Backend
+  # ===============================
+  backend:
+    build:
+      context: ./familycart-be
+    container_name: familycart-be-web
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - ./familycart-be:/app
+    ports:
+      - "8000:8000"
+    environment:
+      - DATABASE_URL=postgres://postgres:postgres@db:5432/familycart
+    depends_on:
+      - db
+    restart: always
+
+  # ===============================
+  # 🌐 Angular Frontend (Dev)
+  # ===============================
+  frontend:
+    build:
+      context: ./familycart-fe
+    container_name: familycart-fe
+    command: npm start
+    volumes:
+      - ./familycart-fe:/app
+      - /app/node_modules
+    ports:
+      - "4200:4200"
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+    depends_on:
+      - backend
+    restart: always
+
+volumes:
+  pgdata:
+

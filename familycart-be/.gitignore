@@ -1,0 +1,11 @@
+.DS_Store
+**/__pycache__/**
+**/**/__pycache__/**
+.env
+venv/
+**/media/**
+channel/attachments/**
+server.*
+.env
+env/
+
