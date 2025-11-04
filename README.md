@@ -181,7 +181,7 @@ DB_PORT=5432
 * Real-time updates via WebSockets
 * Push notifications for grocery reminders
 * Cloud deployment with CI/CD pipelines
-* Role-based user access (Admin/Member)
+* Role-based user access (Owner/Member)
 
 ---
 
@@ -208,4 +208,3 @@ DB_PORT=5432
 Created by **Ravinkumar Rakholiya**
 © 2025 – FamilyCart 
 
-```
