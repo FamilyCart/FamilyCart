@@ -1,6 +1,12 @@
 from django.contrib import admin
 from family.models import Family, Role, FamilyMembership
 
+# ------------------------------------------------------------------------------
+# Admin Configuration
+# ------------------------------------------------------------------------------
+# This admin class customizes how the Family model appears in Django Admin.
+# It adds filters, search functionality, ordering, pagination, and grouping of fields.
+# ------------------------------------------------------------------------------
 
 class FamilyAdmin(admin.ModelAdmin):
     list_display = ("id","name", "family_code", "created_at", "updated_at")

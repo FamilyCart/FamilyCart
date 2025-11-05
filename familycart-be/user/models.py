@@ -135,28 +135,22 @@ class User(AbstractBaseUser):
 
 	def generate_creative_username(self):
 	    """
-	    Generates a creative username with a maximum length of 10 characters.
+	    Generate a short, unique username (max 10 chars).
+	    Uses first name or email prefix and appends a random string.
 	    """
-	    adjectives = ["Cool", "Epic", "Brave", "Witty", "Swift", "Funky", "Lucky", "Smart"]
-	    nouns = ["Code", "Ninja", "Voy", "Hack", "Dev", "Geek", "Hero", "Ace"]
+	    base_name = slugify(self.first_name or (self.email.split('@')[0] if self.email else 'user'))[:6]
 
-	    base_name = slugify(self.first_name)[:5] if self.first_name else "User"
-	    random_word = random.choice(adjectives)[:3] + random.choice(nouns)[:3]  # Shorten words
-	    random_number = str(random.randint(10, 99))  # Keep the number short
+	    def random_suffix():
+	        return ''.join(random.choices(string.ascii_lowercase + string.digits, k=3))
 
-	    username = (base_name + random_word + random_number)[:10]  # Ensure max length 10
+	    username = f"{base_name}{random_suffix()}"[:10]
 
 	    # Ensure uniqueness
 	    while User.objects.filter(username=username).exists():
-	        random_number = str(random.randint(10, 99))
-	        username = (base_name + random_word + random_number)[:10]
+	        username = f"{base_name}{random_suffix()}"[:10]
 
 	    return username.lower()
-
-	def generate_random_string(length):
-	    characters = string.ascii_letters + string.digits  # include both letters and digits
-	    random_string = ''.join(random.choice(characters) for _ in range(length))
-	    return random_string
+	    
 
 class EmailVerification(models.Model):
 	uuid = models.UUIDField(default=uuid.uuid4, editable=False)

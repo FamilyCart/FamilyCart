@@ -3,9 +3,14 @@ from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.contrib.auth.forms import ReadOnlyPasswordHashField
 from django.contrib.auth.models import Permission
-
 from user.models import *
 
+# ------------------------------------------------------------------------------
+# Admin Configuration for Model
+# ------------------------------------------------------------------------------
+# This admin class customizes how the model appears in Django Admin.
+# It adds filters, search functionality, ordering, pagination, and grouping of fields.
+# ------------------------------------------------------------------------------
 
 @admin.register(Permission)
 class PermissionAdmin(admin.ModelAdmin):

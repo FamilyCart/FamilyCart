@@ -13,9 +13,6 @@ from rest_framework.permissions import (
 from rest_framework.response import Response
 from rest_framework.views import APIView
 # Local Import
-from user.models import *
-from user.serializers import *
-from user.scripts import *
 from rest_framework.pagination import LimitOffsetPagination
 from rest_framework.settings import api_settings
 from django.db.models import Q
@@ -51,7 +48,7 @@ class JoinFamilyAPIView(APIView):
         family_code = serializer.validated_data.get("family_code", "").strip()
         family_name = serializer.validated_data.get("family_name", "").strip()
 
-        # ✅ Check if user already belongs to a family
+        # Check if user already belongs to a family
         existing_membership = FamilyMembership.objects.filter(user=user).first()
         if existing_membership:
             return Response(

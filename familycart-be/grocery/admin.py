@@ -1,6 +1,13 @@
 from django.contrib import admin
 from grocery.models import *
 
+# ------------------------------------------------------------------------------
+# Admin Configuration for Model
+# ------------------------------------------------------------------------------
+# This admin class customizes how the model appears in Django Admin.
+# It adds filters, search functionality, ordering, pagination, and grouping of fields.
+# ------------------------------------------------------------------------------
+
 class GroceryItemInline(admin.TabularInline):
     """Inline display of grocery items inside a grocery list."""
     model = GroceryItem

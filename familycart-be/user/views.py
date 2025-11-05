@@ -77,7 +77,7 @@ class LoginWithOTPAPIView(GenericAPIView):
 
 
 class SignUpAPIViewAPIView(APIView):
-    """End point To Generate/ReGenerate the OTP. Send contact_number and country_code [country_code:str] in parameters"""
+    """End point For User to SIGNUP with First name, Last Name and Email"""
     permission_classes = [AllowAny]
 
     # @handle_exceptions
@@ -141,7 +141,7 @@ class SignUpAPIViewAPIView(APIView):
         if email:
             user = User.objects.create(email = email, first_name = first_name, last_name = last_name)
             user.email_verified = False
-            verification_otp = generate_otp()
+            verification_otp = generate_otp() # generat 4 digit OTP
             EmailVerification.objects.get_or_create(email_to = user, verification_otp = verification_otp)
             send_user_sign_up_mail(f"Verify your your {settings.APP_NAME} Account",user.first_name, verification_otp, email)
             user.save()
@@ -288,6 +288,7 @@ class FetchProfileAPIView(APIView):
 
     @handle_exceptions
     def get(self, request):
+        """ Fetch the User Data """
         return Response(
                     status=status.HTTP_200_OK,
                     data={
@@ -299,6 +300,7 @@ class FetchProfileAPIView(APIView):
 
     @handle_exceptions
     def patch(self, request):
+        """ Partial Update User Profile """
         user = request.user
         serializer = UserSimpleSerializer(user, data=request.data, partial=True)
         if serializer.is_valid():

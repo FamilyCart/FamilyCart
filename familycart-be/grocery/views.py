@@ -43,7 +43,7 @@ class GroceryListViewSet(ModelViewSet):
         """Attach created_by automatically to the current user."""
         serializer.save(created_by=self.request.user)
 
-    # List
+    # List Grocery List Objs
     @handle_exceptions
     def list(self, request, *args, **kwargs):
         queryset = self.get_queryset()
@@ -63,7 +63,7 @@ class GroceryListViewSet(ModelViewSet):
             KEY_STATUS: 1
         }, status=status.HTTP_200_OK)
 
-    # Retrieve
+    # Fetch Grocery List Objs
     @handle_exceptions
     def retrieve(self, request, *args, **kwargs):
         instance = self.get_object()
@@ -74,7 +74,7 @@ class GroceryListViewSet(ModelViewSet):
             KEY_STATUS: 1
         }, status=status.HTTP_200_OK)
 
-    # Create
+    # Create Grocery List Objs
     @handle_exceptions
     def create(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)
@@ -106,7 +106,7 @@ class GroceryListViewSet(ModelViewSet):
             KEY_STATUS: 1
         }, status=status.HTTP_201_CREATED)
 
-    # Update
+    # Update Grocery List Objs
     @handle_exceptions
     def update(self, request, *args, **kwargs):
         instance = self.get_object()
@@ -120,7 +120,7 @@ class GroceryListViewSet(ModelViewSet):
             KEY_STATUS: 1
         }, status=status.HTTP_200_OK)
 
-    # Delete
+    # Delete Grocery List Objs
     @handle_exceptions
     def destroy(self, request, *args, **kwargs):
         instance = self.get_object()
